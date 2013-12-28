@@ -1,0 +1,4 @@
+Options -Indexes
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !(index.php|favicon.ico)$
+RewriteRule (.*) index.php/$1 [PT,L]
