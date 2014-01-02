@@ -5,7 +5,7 @@ function stripSlashesDeep($value) {
 	return $value;
 }
 
-function removeMagicOuotes() {
+function removeMagicQuotes() {
 	if (get_magic_quotes_gpc()) {
 		$_GET = stripSlashesDeep($_GET);
 		$_POST = stripSlashesDeep($_POST);
@@ -53,8 +53,8 @@ function callHook() {
 
 function __autoload($className) {
 	//Do not forgett to add the api
-	if (file_exists(ROOT . DS . 'library' . DS . 'core' . DS strtolower($className) . '.class.php')) {
-        require_once(ROOT . DS . 'library' . DS .'core' . DS strtolower($className) . '.class.php');
+	if (file_exists(ROOT . DS . 'library' . DS . 'core' . DS . strtolower($className) . '.class.php')) {
+        require_once(ROOT . DS . 'library' . DS .'core' . DS . strtolower($className) . '.class.php');
     } else if (file_exists(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php')) {
         require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
     } else if (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) {
@@ -64,7 +64,6 @@ function __autoload($className) {
     }
 }
 
-setReporting();
 removeMagicQuotes();
 unregisterGlobals();
 callHook();
