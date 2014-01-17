@@ -3,7 +3,7 @@
  * @author Flavio Kleiber <flavio@swagpeople.ch>
  * @copyright Flavio Kleiber, swagpeople.ch (c) 2014
  *
- * This is the default Controller
+ * The template engine
  **/
 
  class Template {
@@ -23,18 +23,18 @@
  	function render() {
 		extract($this->variables);
 	 
-	    if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'header.php')) {
-	        include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'header.php');
+	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.php')) {
+	        include (ROOT . '/application/views/' .$this->_controller .'/header.php');
 	    } else {
-	        include (ROOT . DS . 'application' . DS . 'views' . DS . 'header.php');
+	        include (ROOT .'/application/views/header.php');
 	    }
 
-	include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . $this->_action . '.php');      
+	include (ROOT . '/application/views/' . $this->_controller . '/' . $this->_action . '.php');      
 	     
-	    if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'footer.php')) {
-	        include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'footer.php');
+	    if (file_exists(ROOT . '/application/views/'. $this->_controller .'/footer.php')) {
+	        include (ROOT . '/application/views/'. $this->_controller . '/footer.php');
 	    } else {
-	        include (ROOT . DS . 'application' . DS . 'views' . DS . 'footer.php');
+	        include (ROOT . '/application/views/footer.php');
 	    }
  	}
  }

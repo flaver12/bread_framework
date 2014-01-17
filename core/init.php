@@ -25,11 +25,6 @@ function ErrorReporting() {
 function callHook() {
 	global $url;
 	$url = explode('/', $url);
-	if (empty($url[0])) {
-		//$url[0] = 'index';
-		//$url[1] = 'index';
-	}
-
 	$controller = $url[0];
 	$action = $url[1];
 	$queryString = $url[2];

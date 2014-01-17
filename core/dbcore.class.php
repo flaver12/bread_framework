@@ -30,4 +30,9 @@ class DBCore {
 			return 0;
 		}
 	}
+
+	protected function selectAll() {
+		$q = "SELECT * 
+			FROM $this->_dbHandler";
+	}
 }
