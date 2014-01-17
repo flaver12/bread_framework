@@ -34,5 +34,14 @@ class DBCore {
 	protected function selectAll() {
 		$q = "SELECT * 
 			FROM $this->_dbHandler";
+		
+	}
+
+	protected function numRows() {
+
+	}
+
+	protected function sendQuery() {
+		
 	}
 }
