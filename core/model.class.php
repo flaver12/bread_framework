@@ -7,11 +7,11 @@
  **/
 
 class Model extends DBCore {
-	protected $_model
+	protected $_model;
 
 	function __construct() {
 		//CHANGE ME!
-		$this->connect('localhost', 'mysql_user', 'mysql_password', 'database');
+		$this->connect(DB_HOST, DB_USER, DB_PW, DB_DB);
 		$this->_model = get_class($this);
 		$this->_table = strtolower($this->_model)."s";
 	}

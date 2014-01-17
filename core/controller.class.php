@@ -18,7 +18,7 @@ class Controller {
     	$this->_action = $action;
 
     	/**UGLY UGLY HACK!**/
-    	$this->_model = @ new $model;
+    	$this->_model = new $model;
     	$this->_template = new Template($controller, $action);
     }
 
@@ -26,7 +26,7 @@ class Controller {
     	$this->_template->set($name, $value);
     }
 
-    protected function __destruct() {
+    function __destruct() {
     	$this->_template->render();
     }
  

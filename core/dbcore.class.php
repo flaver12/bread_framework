@@ -10,7 +10,7 @@ class DBCore {
 	protected $_dbHandler;
 	protected $_result;
 
-	protected function connect($username, $pw, $host, $db) {
+	protected function connect($host, $username, $pw, $db) {
 		$this->_dbHandler = mysql_connect($host, $username, $pw);
 		if (!$this->_dbHandler) {
 			throw new Exception("Error! MYSQL say: ".  mysql_error());
@@ -25,7 +25,7 @@ class DBCore {
 
 	private function disconnect() {
 		if (mysql_close($this->_dbHandler) !=0) {
-			return 1
+			return 1;
 		} else {
 			return 0;
 		}

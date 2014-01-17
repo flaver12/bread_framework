@@ -23,18 +23,18 @@
  	function render() {
 		extract($this->variables);
 	 
-	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.php')) {
-	        include (ROOT . '/application/views/' .$this->_controller .'/header.php');
+	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.phtml')) {
+	        include (ROOT . '/application/views/' .$this->_controller .'/header.phtml');
 	    } else {
 	        include (ROOT .'/application/views/header.php');
 	    }
 
-	include (ROOT . '/application/views/' . $this->_controller . '/' . $this->_action . '.php');      
+		include (ROOT . '/application/views/' . $this->_controller . '/' . $this->_action . '.phtml');      
 	     
-	    if (file_exists(ROOT . '/application/views/'. $this->_controller .'/footer.php')) {
-	        include (ROOT . '/application/views/'. $this->_controller . '/footer.php');
+	    if (file_exists(ROOT . '/application/views/'. $this->_controller .'/footer.phtml')) {
+	        include (ROOT . '/application/views/'. $this->_controller . '/footer.phtml');
 	    } else {
-	        include (ROOT . '/application/views/footer.php');
+	        include (ROOT . '/application/views/footer.phtml');
 	    }
  	}
  }
