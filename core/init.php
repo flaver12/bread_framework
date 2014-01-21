@@ -66,6 +66,7 @@ function __autoload($className) {
     else {
        throw new Exception("$className condt bee load, do you create it?");
     }
+    //var_dump($className);
 }
 
 ErrorReporting();

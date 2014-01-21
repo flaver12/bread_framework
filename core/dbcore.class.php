@@ -32,9 +32,9 @@ class DBCore {
 	}
 
 	protected function selectAll() {
-		$q = "SELECT * 
-			FROM $this->_dbHandler";
-		
+		$query = 'SELECT * 
+			FROM '. $this->_table .' ';
+		return $this->query($query);
 	}
 
 	protected function numRows() {
