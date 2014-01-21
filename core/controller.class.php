@@ -16,8 +16,7 @@ class Controller {
     	$this->_model = $model;
     	$this->_controller = $controller;
     	$this->_action = $action;
-
-    	/**UGLY UGLY HACK!**/
+        
     	$this->_model = new $model;
     	$this->_template = new Template($controller, $action);
     }

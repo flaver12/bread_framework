@@ -25,15 +25,20 @@ function ErrorReporting() {
 function callHook() {
 	global $url;
 	$url = explode('/', $url);
-	$controller = $url[0];
-	$action = $url[1];
-	$queryString = $url[2];
+	if (isset($url)) {
+		$controller = "indexs";
+		$action = "index";
+		/**UGLY HACK**/
+		$test1 = array('handi' => 'hansi');
+		$queryString = $test1;
+	} else {
+		$controller = $url[0];
+		$action = $url[1];
+		$queryString = $url[2];
+	}
 	$controllerName = $controller;
 	$controller = ucwords($controller);
 	$model = rtrim($controller, 's');
-	if (empty($model)) {
-		$model = "Model";
-	}
 	$controller .= 'Controller';
 
 	$dispatch = new $controller($model, $controllerName, $action);
@@ -47,8 +52,13 @@ function callHook() {
 function __autoload($className) {
     if (file_exists(ROOT . '/core/' . strtolower($className) . '.class.php')) {
         require_once(ROOT . '/core/' . strtolower($className) . '.class.php');
-    } else {
-        die('Error');
+    } elseif (file_exists(ROOT . '/application/controllers/' . strtolower($className) . '.php')) {
+    	require_once(ROOT . '/application/controllers/' . strtolower($className) . '.php');
+    } elseif (file_exists(ROOT . '/application/models/' . strtolower($className) . '.php')) {
+    	require_once(ROOT . '/application/models/' . strtolower($className) . '.php');
+    }
+    else {
+        die('Error, class: ' . $className . 'coudnt be loaded');
     }
 }
 

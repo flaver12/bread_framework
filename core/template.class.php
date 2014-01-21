@@ -26,7 +26,7 @@
 	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.phtml')) {
 	        include (ROOT . '/application/views/' .$this->_controller .'/header.phtml');
 	    } else {
-	        include (ROOT .'/application/views/header.php');
+	        include (ROOT .'/application/views/header.phtml');
 	    }
 
 		include (ROOT . '/application/views/' . $this->_controller . '/' . $this->_action . '.phtml');      

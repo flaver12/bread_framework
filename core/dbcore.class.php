@@ -15,7 +15,7 @@ class DBCore {
 		if (!$this->_dbHandler) {
 			throw new Exception("Error! MYSQL say: ".  mysql_error());
 		} else {
-			if (mysql_select_db($name, $this->_dbHandler)) {
+			if (mysql_select_db($db, $this->_dbHandler)) {
 				return 1;
 			} else {
 				return 0;
