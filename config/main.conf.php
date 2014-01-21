@@ -6,8 +6,7 @@
  * MainConfig
  **/
 define('DEV', TRUE);
-define('DEFAULT_INDEX', 'index');
-
+define('SIDETITLE', 'Swagpeople - Show the swagpeople');
 define('DB_HOST', 'vweb04.nitrado.net');
 define('DB_PW', "flavio12");
 define('DB_USER', 'ni39748_1sql2');

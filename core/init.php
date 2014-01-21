@@ -25,7 +25,7 @@ function ErrorReporting() {
 function callHook() {
 	global $url;
 	$url = explode('/', $url);
-	if (isset($url)) {
+	if (empty($url[0])) {
 		$controller = "indexs";
 		$action = "index";
 		/**UGLY HACK**/
@@ -34,7 +34,13 @@ function callHook() {
 	} else {
 		$controller = $url[0];
 		$action = $url[1];
-		$queryString = $url[2];
+		if(empty($url[2])) {
+			/**UGLY HACK**/
+			$test1 = array('handi' => 'hansi');
+			$queryString = $test1;
+		} else {
+			$queryString = $url[2];
+		}
 	}
 	$controllerName = $controller;
 	$controller = ucwords($controller);
@@ -58,7 +64,7 @@ function __autoload($className) {
     	require_once(ROOT . '/application/models/' . strtolower($className) . '.php');
     }
     else {
-        die('Error, class: ' . $className . 'coudnt be loaded');
+       throw new Exception("$className condt bee load, do you create it?");
     }
 }
 
