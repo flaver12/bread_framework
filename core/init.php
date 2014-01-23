@@ -24,6 +24,8 @@ function ErrorReporting() {
 
 function callHook() {
 	global $url;
+	//new Lesscompiler();
+	new Logger();
 	$url = explode('/', $url);
 	if (empty($url[0])) {
 		$controller = "indexs";
@@ -44,10 +46,9 @@ function callHook() {
 	}
 	$controllerName = $controller;
 	$controller = ucwords($controller);
-	$model = rtrim($controller, 's');
 	$controller .= 'Controller';
 
-	$dispatch = new $controller($model, $controllerName, $action);
+	$dispatch = new $controller($controllerName, $action);
 	if((int)method_exists($controller, $action)) {
 		call_user_func_array(array($dispatch, $action), $queryString);
 	} else {
@@ -60,10 +61,7 @@ function __autoload($className) {
         require_once(ROOT . '/core/' . strtolower($className) . '.class.php');
     } elseif (file_exists(ROOT . '/application/controllers/' . strtolower($className) . '.php')) {
     	require_once(ROOT . '/application/controllers/' . strtolower($className) . '.php');
-    } elseif (file_exists(ROOT . '/application/models/' . strtolower($className) . '.php')) {
-    	require_once(ROOT . '/application/models/' . strtolower($className) . '.php');
-    }
-    else {
+    } else {
        throw new Exception("$className condt bee load, do you create it?");
     }
     //var_dump($className);

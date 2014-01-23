@@ -5,7 +5,7 @@
  *
  * This is the exporter
  **/
-error_reporting(0);
+//error_reporting(0);
 class Exporter {
 	protected $_type;
 	protected $_data;

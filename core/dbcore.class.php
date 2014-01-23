@@ -10,6 +10,10 @@ class DBCore {
 	protected $_dbHandler;
 	protected $_result;
 
+	function __construct() {
+		$this->connect(DB_HOST, DB_USER, DB_PW, DB_DB);
+	}
+
 	protected function connect($host, $username, $pw, $db) {
 		$this->_dbHandler = mysql_connect($host, $username, $pw);
 		if (!$this->_dbHandler) {
@@ -23,7 +27,7 @@ class DBCore {
 		}
 	}
 
-	private function disconnect() {
+	protected function disconnect() {
 		if (mysql_close($this->_dbHandler) !=0) {
 			return 1;
 		} else {
@@ -31,17 +35,23 @@ class DBCore {
 		}
 	}
 
-	protected function selectAll() {
-		$query = 'SELECT * 
-			FROM '. $this->_table .' ';
-		return $this->query($query);
-	}
-
-	protected function numRows() {
-
-	}
-
-	protected function sendQuery() {
-		
+	/**
+	 * Send a query to the database
+	 * @param  String $q 
+	 * @return Array or NULL
+	 */
+	public function sendQuery($q = NULL) {
+		if (!isset($q)) {
+			throw new Exception("Empty query string");
+		}
+		$result = mysql_query($q);
+		if (empty($result)) {
+			return NULL;
+		} else {
+			while ($all = mysql_fetch_assoc($result)){
+				$all_arr[]=$all;
+			}
+			return $all_arr;
+		}
 	}
 }

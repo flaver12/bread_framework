@@ -7,17 +7,14 @@
  **/
 
 class Controller {
-	protected $_model;
     protected $_controller;
     protected $_action;
     protected $_template;
 
-    function __construct($model, $controller, $action) {
-    	$this->_model = $model;
+    function __construct( $controller, $action) {
     	$this->_controller = $controller;
     	$this->_action = $action;
         
-    	$this->_model = new $model;
     	$this->_template = new Template($controller, $action);
     }
 
