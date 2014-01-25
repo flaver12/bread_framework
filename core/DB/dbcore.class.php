@@ -34,24 +34,4 @@ class DBCore {
 			return 0;
 		}
 	}
-
-	/**
-	 * Send a query to the database
-	 * @param  String $q 
-	 * @return Array or NULL
-	 */
-	public function sendQuery($q = NULL) {
-		if (!isset($q)) {
-			throw new Exception("Empty query string");
-		}
-		$result = mysql_query($q);
-		if (empty($result)) {
-			return NULL;
-		} else {
-			while ($all = mysql_fetch_assoc($result)){
-				$all_arr[]=$all;
-			}
-			return $all_arr;
-		}
-	}
 }

@@ -8,8 +8,8 @@
 
 class Logger {
 	function __construct() {
-		require ("library/KLogger/KLogger.php");
-		$log = KLogger::instance(ROOT.'/logs/', KLogger::DEBUG);
+		require (ROOT."/core/Library/KLogger/KLogger.php");
+		$log = KLogger::instance(ROOT.'/logs/', KLogger::ERR, KLogger::WARN);
 		/*$args1 = array('a' => array('b' => 'c'), 'd');
 		$args2 = NULL;
 		$log->logInfo('Info Test');

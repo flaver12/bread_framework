@@ -9,10 +9,10 @@
 class Lesscompiler {
 
 	function __construct() {
-		require ("library/lesscompiler/lessc.inc.php");
+		require (ROOT."/core/Library/lesscompiler/lessc.inc.php");
 		$less = new lessc;
 		try {
-			$less->compileFile(ROOT.'/weebroot/less/main.less');
+			$less->compileFile(ROOT.'/weebroot/less/main.less', ROOT.'/weebroot/css/main.css');
 		} catch (Exception $e) {
 			echo "LessError <b>" . $e->getMessage() . "</b>";
 		}
