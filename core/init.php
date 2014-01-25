@@ -82,6 +82,6 @@ function __autoload($className) {
     }
     //var_dump($className);
 }
-$breadcache = new Cache();
+session_start();
 ErrorReporting();
 callHook();
