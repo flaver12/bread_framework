@@ -13,18 +13,23 @@ class DBQuery extends DBCore {
 	 * @param  String $q 
 	 * @return Array or NULL
 	 */
-	public function sendQuery($q = NULL) {
+	public function sendQuery($q = NULL, $noResult=false) {
 		if (!isset($q)) {
 			throw new Exception("Empty query string");
 		}
 		$result = mysql_query($q);
-		if (empty($result)) {
-			return NULL;
+		if ($noResult) {
+			return true;
 		} else {
-			while ($all = mysql_fetch_assoc($result)){
+			if (empty($result)) {
+				return NULL;
+			} else {
+				while ($all = mysql_fetch_assoc($result)){
 				$all_arr[]=$all;
 			}
-			return $all_arr;
+				return $all_arr;
+			}
+		
 		}
 	}
 }

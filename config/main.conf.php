@@ -8,6 +8,6 @@
 define('DEV', TRUE);
 define('SIDETITLE', 'Swagpeople - Show the swagpeople');
 define('DB_HOST', 'vweb04.nitrado.net');
-define('DB_PW', "flavio12");
-define('DB_USER', 'ni39748_1sql2');
-define('DB_DB', 'ni39748_1sql2');
+define('DB_PW', "swag2013");
+define('DB_USER', 'ni39748_1sql4');
+define('DB_DB', 'ni39748_1sql4');
