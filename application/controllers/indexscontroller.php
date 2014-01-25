@@ -9,6 +9,8 @@ class IndexsController extends Controller {
 		$mebers = new DBQuery();
 		$q = "SELECT * 
 			FROM members";
-		//print_r($mebers->sendQuery($q));
+		$meberList = $mebers->sendQuery($q);
+		$halllo = "Hans";
+		$this->breadCache("meineListe", $halllo);
 	}
 }

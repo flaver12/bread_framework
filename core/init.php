@@ -75,11 +75,13 @@ function __autoload($className) {
     	require_once(ROOT . '/application/controllers/' . strtolower($className) . '.php');
     } elseif (file_exists(ROOT . '/core/' . strtolower($className) . '.class.php')) {
     	require_once(ROOT . '/core/' . strtolower($className) . '.class.php');
+    } elseif (file_exists(ROOT . '/core/Cache/' . strtolower($className) . '.class.php')) {
+    	require_once(ROOT . '/core/Cache/' . strtolower($className) . '.class.php');
     } else {
        throw new Exception("$className condt bee load, do you create it?");
     }
     //var_dump($className);
 }
-
+$breadcache = new Cache();
 ErrorReporting();
 callHook();

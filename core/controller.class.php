@@ -22,6 +22,14 @@ class Controller {
     	$this->_template->set($name, $value);
     }
 
+    protected function breadCache($name = NULL, $value = NULL) {
+        if (empty($name) || empty($value)) {
+            throw new Exception("No name ore Value given in breadcache");
+        }
+        $breadcache = new Cache();
+        $breadcache->set($name, $value);
+    }
+
     function __destruct() {
     	$this->_template->render();
     }
