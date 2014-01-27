@@ -36,6 +36,9 @@ function callHook() {
 	} else {
 		$controller = $url[0];
 		$action = $url[1];
+		if (empty($action)) {
+			$action = "index";
+		}
 		if(empty($url[2])) {
 			/**UGLY HACK**/
 			$test1 = array('handi' => 'hansi');
@@ -77,10 +80,12 @@ function __autoload($className) {
     	require_once(ROOT . '/core/' . strtolower($className) . '.class.php');
     } elseif (file_exists(ROOT . '/core/Cache/' . strtolower($className) . '.class.php')) {
     	require_once(ROOT . '/core/Cache/' . strtolower($className) . '.class.php');
+    } elseif (file_exists(ROOT . '/core/HTML/' . strtolower($className) . '.class.php')) {
+    	require_once(ROOT . '/core/HTML/' . strtolower($className) . '.class.php');
     } else {
        throw new Exception("$className condt bee load, do you create it?");
     }
-    //var_dump($className);
+    var_dump($className);
 }
 session_start();
 ErrorReporting();
