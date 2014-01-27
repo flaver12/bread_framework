@@ -32,4 +32,23 @@ class DBQuery extends DBCore {
 		
 		}
 	}
+
+	/**
+	 * Send the number of Rows back
+	 * @param  String $tabel
+	 * @return Int
+	 */
+	public function getNumberOfRows($tabel = NULL) {
+		if (!isset($tabel)) {
+			throw new Exception("getNumberOfRows needs a Tabel");
+		}
+		$result = mysql_query("SELECT * 
+							FROM $tabel");
+		if (empty($result)) {
+			return NULL;
+		} else {
+			$numRows = mysql_num_rows($result);
+			return $numRows;
+		}
+	}
 }

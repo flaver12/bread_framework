@@ -8,7 +8,6 @@
 
 class DBCore {
 	protected $_dbHandler;
-	protected $_result;
 
 	function __construct() {
 		$this->connect(DB_HOST, DB_USER, DB_PW, DB_DB);

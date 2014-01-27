@@ -4,8 +4,8 @@ class IndexsController extends Controller {
 	function index() {
 		$test1 = "Hallo Welt!";
 		$this->set('test1', $test1);
-		//TODO: CALL ON A NONE OBJECT?! WTF
-		//$this->set('items', $this->Index->selectAll());
-		$bill = new BillGen();
+		$query = new PDOCore();
+		$test = $query->sendQuery("SELCT * FROM bBill");
+		print_r($test);
 	}
 }
