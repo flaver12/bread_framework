@@ -10,24 +10,21 @@ class Controller {
     protected $_controller;
     protected $_action;
     protected $_template;
+    protected $_breadcache;
+    protected $_auth;
 
     function __construct( $controller, $action) {
     	$this->_controller = $controller;
     	$this->_action = $action;
         
+        //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
+        $this->_breadcache = new Cache();
+        $this->_auth = new Auth();
     }
 
     protected function set($name, $value) {
     	$this->_template->set($name, $value);
-    }
-
-    protected function breadCache($name = NULL, $value = NULL) {
-        if (empty($name) || empty($value)) {
-            throw new Exception("No name ore Value given in breadcache");
-        }
-        $breadcache = new Cache();
-        $breadcache->set($name, $value);
     }
 
     function __destruct() {

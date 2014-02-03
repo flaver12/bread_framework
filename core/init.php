@@ -59,9 +59,13 @@ function callHook() {
 	}
 }
 
+function session() {
+	session_start();
+}
+
 function __autoload($className) {
     if (file_exists(ROOT . '/core/Auth/' . strtolower($className) . '.class.php')) {
-        require_once(ROOT . '/core/Auth' . strtolower($className) . '.class.php');
+        require_once(ROOT . '/core/Auth/' . strtolower($className) . '.class.php');
     } elseif (file_exists(ROOT . '/core/Compiler/' . strtolower($className) . '.class.php')) {
     	require_once(ROOT . '/core/Compiler/' . strtolower($className) . '.class.php');
     } elseif (file_exists(ROOT . '/core/DB/' . strtolower($className) . '.class.php')) {
@@ -87,6 +91,6 @@ function __autoload($className) {
     }
     var_dump($className);
 }
-session_start();
+session();
 ErrorReporting();
 callHook();
