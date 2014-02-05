@@ -20,7 +20,7 @@ class Controller {
         //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
         $this->_breadcache = new Cache();
-        $this->_auth = new Auth();
+        //$this->_auth = new Auth();
     }
 
     protected function set($name, $value) {
