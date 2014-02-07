@@ -1,11 +1,10 @@
+<?php
+    $HTML = new HTML();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="weebroot/css/main.css">
-	<script type="text/javascript" src="weebroot/js/less.js"></script>
-	<script type="text/javascript" src="weebroot/js/jquery.js"></script>
-	<script type="text/javascript" src="weebroot/js/panel.js"></script>
-    <?php  ?>
+    <?php echo $HTML->includeCSS("main"); ?>
 	<title><?php echo constant("SIDETITLE") ?></title>
 </head>
 <body>

@@ -10,8 +10,8 @@ class Controller {
     protected $_controller;
     protected $_action;
     protected $_template;
-    protected $_breadcache;
-    protected $_auth;
+    protected $breadcache;
+    protected $auth;
 
     function __construct( $controller, $action) {
     	$this->_controller = $controller;
@@ -19,8 +19,8 @@ class Controller {
         
         //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
-        $this->_breadcache = new Cache();
-        //$this->_auth = new Auth();
+        $this->breadcache = new Cache();
+        //$this->auth = new Auth();
     }
 
     protected function set($name, $value) {

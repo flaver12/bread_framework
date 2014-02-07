@@ -5,8 +5,12 @@ class IndexsController extends Controller {
 		$test1 = "Hallo Welt!";
 		$this->set('test1', $test1);
 		$row = new DBRow();
-		$row->setRow('fUser');
-		$row->get('username');
-		$row->debug();
+		$row->setRow('bUser');
+		$row->set('username', 'hansi');
+        $row->set('email');
+        if($row->find()) {
+            echo "Super";
+        }
+
 	}
 }

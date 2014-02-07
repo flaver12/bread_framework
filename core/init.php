@@ -6,11 +6,6 @@
  * Init
  **/
 
-/**
- * Set the Errorreporting
- *
- * @return void
- */
 function ErrorReporting() {
 	if ('DEV' == TRUE) {
 		error_reporting(E_ALL);

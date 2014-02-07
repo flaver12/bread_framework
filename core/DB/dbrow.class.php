@@ -10,7 +10,14 @@ class DBRow extends DBCore {
 	 * @var String 
 	 */
 	protected $_row;
-	protected $_debug;
+    /**
+     * @var String
+     */
+    protected $_debug;
+    /**
+     * @var array
+     */
+    protected $_values = array();
 
 	/**
 	 * Set a Row
@@ -55,6 +62,31 @@ class DBRow extends DBCore {
 				return $all_arr;
 			}
 	}
+
+    /**
+     * Set a SELECT Value for DBRow
+     *
+     * @param $value
+     * @return void
+     */
+    public function set($value) {
+        $this->_values[] = $value;
+    }
+
+    public function find() {
+        //Make me a nice String
+        $value = implode(",", $this->_values);
+        $q = 'SELECT '.$value. ' FROM '.$this->_row ;
+        $result = mysql_query($q);
+        if (empty($result)) {
+            return NULL;
+        } else {
+            while ($all = mysql_fetch_assoc($result)){
+                $all_arr[]=$all;
+            }
+            return $all_arr;
+        }
+    }
 	/**
 	 * Little dbeug HACK
 	 * @return [type] [description]

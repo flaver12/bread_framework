@@ -14,7 +14,7 @@
  	function __construct($controller, $action) {
  		$this->_controller = $controller;
  		$this->_action = $action;
- 	}
+    }
 
  	function set($name, $value) {
  		$this->variables[$name] = $value;
