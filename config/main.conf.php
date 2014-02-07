@@ -11,3 +11,5 @@ define('DB_HOST', 'vweb04.nitrado.net');
 define('DB_PW', "swag2013");
 define('DB_USER', 'ni39748_1sql4');
 define('DB_DB', 'ni39748_1sql4');
+define('BASE_PATH','http://localhost/bread_framework');
+define('LESS', FALSE);

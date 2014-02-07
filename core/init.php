@@ -24,7 +24,9 @@ function ErrorReporting() {
 
 function callHook() {
 	global $url;
-	new Lesscompiler();
+    if(LESS == true) {
+        new Lesscompiler();
+    }
 	new Logger();
 	$url = explode('/', $url);
 	if (empty($url[0])) {
@@ -89,7 +91,6 @@ function __autoload($className) {
     } else {
        throw new Exception("$className condt bee load, do you create it?");
     }
-    var_dump($className);
 }
 session();
 ErrorReporting();
