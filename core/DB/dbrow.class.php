@@ -87,13 +87,4 @@ class DBRow extends DBCore {
             return $all_arr;
         }
     }
-	/**
-	 * Little dbeug HACK
-	 * @return [type] [description]
-	 */
-	public function debug() {
-		var_dump($this->_row);
-		var_dump($this->_debug);
-	}
-	
 }

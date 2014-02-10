@@ -6,4 +6,5 @@
  * Bootstraping
 **/
 require_once(ROOT.'/config/main.conf.php');
+require_once(ROOT.'/config/mail.conf.php');
 require_once(ROOT.'/core/init.php');
