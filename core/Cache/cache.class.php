@@ -19,7 +19,7 @@ class Cache {
 			fclose($handel);
 			return unserialize($value);
 		} else {
-			throw new Exception("$file count not be load");
+			throw new Exception("$file could not be load");
 		}
 	}
 
