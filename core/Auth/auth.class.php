@@ -1,26 +1,27 @@
 <?php
 /**
- * @author syz <aurel@swag
- people.ch>
+ * @author syz <aurel@swagpeople.ch>
  * @copyright syz, swagpeople.ch (c) 2014
  *
  * Auth class
  **/
 
 class Auth {
-	private $_sessionUser = $_SESSION['loggedIn'];
+	private $_sessionUser;
 
 	public function isUserloggedIn() {
-			
+        $this->_sessionUser = $_SESSION['loggedIn'];
 
-		if($_sessionUser != 'loggedIn')
+		if($this->_sessionUser != 'loggedIn')
 		{
-		return	Null
+		return	Null;
 		}
-		else {return true}
+		else {return true;}
 	}
 
-	public function autolog() {
+	/*
+	 * Because of errors its in the comments now
+	 * public function autolog() {
 		// Someone smart have to work here
 		 if exist cookie
 		get cookie
@@ -28,25 +29,24 @@ class Auth {
 		
 		
 		
-	}
+	}*/
 	
-	public function Login(User,Password)
+	public function Login($User,$Password)
 	{
-	setRow(Username);
-	set(User);
-	$result = find();
-	if ($result == 0)
+    //Make a md5 hash of the pw
+    $Password = md5($Password);
+    $row = new DBRow();
+    $row->setRow('bUser');
+    $row->set($User, 'username');
+    $row->set($Password, 'pw');
+    $result = $row->findByKey();
+	if (empty($result))
 	{
-	return Null
+	return Null;
 	}
 	else {
-	// Hend mir Sho Session Funktione?
-	//put data to Session LoginFlag
-	
-	return $result}
-	
- 
-	
-	
+	/**is now fixed**/
+	$_SESSION['loggedIn'] = true;
+	return $result;}
 	}
 }

@@ -21,8 +21,7 @@ class Controller {
         //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
         $this->breadcache = new Cache();
-        $this->trans = new Translate();
-        //$this->auth = new Auth();
+        $this->auth = new Auth();
     }
 
     protected function set($name, $value) {
