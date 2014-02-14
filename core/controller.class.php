@@ -12,6 +12,7 @@ class Controller {
     protected $_template;
     protected $breadcache;
     protected $auth;
+    protected $trans;
 
     function __construct( $controller, $action) {
     	$this->_controller = $controller;
@@ -20,6 +21,7 @@ class Controller {
         //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
         $this->breadcache = new Cache();
+        $this->trans = new Translate();
         //$this->auth = new Auth();
     }
 

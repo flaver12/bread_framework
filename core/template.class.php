@@ -20,6 +20,10 @@
  		$this->variables[$name] = $value;
  	}
 
+    function translater($value, $key) {
+
+    }
+
  	function render() {
 		extract($this->variables);
 	 

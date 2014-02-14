@@ -90,7 +90,7 @@ class Translate {
      */
     protected function loadLanuageId() {
         //TODO:Get the langugae code form the Auth class, possible withe the $_SERVER[’HTTP_ACCEPT_LANGUAGE’]
-        $langId = "de";
+        $langId = "DE";
         return $langId;
     }
 }
