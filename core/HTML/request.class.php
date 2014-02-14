@@ -11,4 +11,12 @@ class Request {
 	public static function redirect($page) {
 		
 	}
+
+    public static function getParams() {
+        return $_POST;
+    }
+
+    public static function getLang() {
+       return strtoupper(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+    }
 }

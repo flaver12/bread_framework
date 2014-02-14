@@ -16,9 +16,6 @@ class Translate {
      * @throws Exception
      */
     public function loadTranslationFile($file) {
-        //Create the file path
-        //TODO:Get the langugae code form the Auth class
-       $file = ROOT.'/language/de/'.$file.'.xml';
         if(is_file($file)) {
             if($this->_xml = simplexml_load_file(($file))) {
                 return true;
@@ -89,8 +86,7 @@ class Translate {
      * @return string
      */
     protected function loadLanuageId() {
-        //TODO:Get the langugae code form the Auth class, possible withe the $_SERVER[’HTTP_ACCEPT_LANGUAGE’]
-        $langId = "DE";
+        $langId = Request::getLang();
         return $langId;
     }
 }

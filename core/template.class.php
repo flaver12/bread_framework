@@ -10,18 +10,33 @@
  	protected $variables = array();
  	protected $_controller;
  	protected $_action;
+    protected $trans;
 
  	function __construct($controller, $action) {
  		$this->_controller = $controller;
  		$this->_action = $action;
+        $this->trans = new Translate();
+        $this->translateLoader();
     }
 
  	function set($name, $value) {
  		$this->variables[$name] = $value;
  	}
 
-    function translater($value, $key) {
+    function translateLoader() {
+        $lang = Request::getLang();
+        strtolower($lang);
+        if(file_exists(ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml')) {
+            $file = ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml';
+            $this->trans->loadTranslationFile($file);
+        } else {
+            $file = ROOT.'/language/'.$lang.'/default.xml';
+            $this->trans->loadTranslationFile($file);
+        }
+    }
 
+    function translater($key) {
+        $this->trans->echoText($key);
     }
 
  	function render() {

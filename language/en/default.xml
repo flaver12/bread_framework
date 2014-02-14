@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Default language xml for english
+-->
+<language id="EN">
+    <loctext id="MENU_HEADING">
+        <text>Navigation</text>
+    </loctext>
+    <loctext id="MENU_SETTINGS_TEXT">
+        <text>Settings</text>
+    </loctext>
+</language>
