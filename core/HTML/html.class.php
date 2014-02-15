@@ -19,7 +19,7 @@ class HTML {
 	}
 
     public function includeCSS($name) {
-        $data = '<style href="'.BASE_PATH.'/weebroot/css/'.$name.'.css"></style>';
+        $data = '<style href="weebroot/css/'.$name.'.css"></style>';
         return $data;
     }
 }

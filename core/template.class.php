@@ -12,18 +12,37 @@
  	protected $_action;
     protected $trans;
 
- 	function __construct($controller, $action) {
+     /**
+      * Class constructor
+      *
+      * @param $controller
+      * @param $action
+      * @return mixed
+      */
+     function __construct($controller, $action) {
  		$this->_controller = $controller;
  		$this->_action = $action;
         $this->trans = new Translate();
         $this->translateLoader();
     }
 
- 	function set($name, $value) {
+     /**
+      * Set a variable to the view
+      *
+      * @param $name
+      * @param $value
+      * @return void
+      */
+     function set($name, $value) {
  		$this->variables[$name] = $value;
  	}
 
-    function translateLoader() {
+     /**
+      * Load the translation xml
+      *
+      * @return void
+      */
+     function translateLoader() {
         $lang = Request::getLang();
         strtolower($lang);
         if(file_exists(ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml')) {
@@ -35,11 +54,22 @@
         }
     }
 
-    function translater($key) {
+     /**
+      * Translate a text
+      *
+      * @param $key
+      * @return void
+      */
+     function translater($key) {
         $this->trans->echoText($key);
     }
 
- 	function render() {
+     /**
+      * Renders the view
+      *
+      * @return void
+      */
+     function render() {
 		extract($this->variables);
 	 
 	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.phtml')) {

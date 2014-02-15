@@ -9,11 +9,26 @@
 class DBCore {
 	protected $_dbHandler;
 
-	function __construct() {
+    /**
+     * Class constructor
+     *
+     * @return mixed
+     */
+    function __construct() {
 		$this->connect(DB_HOST, DB_USER, DB_PW, DB_DB);
 	}
 
-	protected function connect($host, $username, $pw, $db) {
+    /**
+     * Make a connection to the database
+     *
+     * @param $host
+     * @param $username
+     * @param $pw
+     * @param $db
+     * @return int
+     * @throws Exception
+     */
+    protected function connect($host, $username, $pw, $db) {
 		$this->_dbHandler = mysql_connect($host, $username, $pw);
 		if (!$this->_dbHandler) {
 			throw new Exception("Error! MYSQL say: ".  mysql_error());
@@ -26,7 +41,12 @@ class DBCore {
 		}
 	}
 
-	protected function disconnect() {
+    /**
+     * Disconnect from a database
+     *
+     * @return int
+     */
+    protected function disconnect() {
 		if (mysql_close($this->_dbHandler) !=0) {
 			return 1;
 		} else {

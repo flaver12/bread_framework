@@ -9,11 +9,11 @@
 class Request {
 
 	public static function redirect($page) {
-		
+		header('Location:http://localhost/bread_framework/'.$page);
 	}
 
-    public static function getParams() {
-        return $_POST;
+    public static function getParams($key) {
+        return $_POST[$key];
     }
 
     public static function getLang() {
