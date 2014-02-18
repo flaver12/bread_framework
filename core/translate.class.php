@@ -6,7 +6,21 @@
  * Translate class
  **/
 class Translate {
+    /**
+     * XML variable
+     * 
+     * @var String
+     * @access protected
+     */
     protected $_xml;
+
+    /**
+     * Language array
+     * 
+     * @var array
+     * @access protected
+     */
+    protected $_languageArray = array();
 
     /**
      * Load a xml file by name
@@ -72,12 +86,17 @@ class Translate {
         if($this->_xml != "") {
             $lang = $this->loadLanuageId();
             $translations = array();
-            $path = "/language[@id=\"$lang\"]";
-            $res = $this->_xml->xpath($path);
+            $path = "/language[@id=\"$lang\"]/loctext";
+            $tempArray[] = $this->_xml->xpath($path);
+            foreach ( (array) $tempArray as $index => $node ) {
+                $out[$index] = ( is_object ( $node ) ) ? xml2array ( $node ) : $node;
+                
+            }
+            print_r($out[0][0]);
         } else {
             throw new Exception("Please load first the XML-File!");
         }
-        return $res;
+        return $this->_languageArray;
     }
 
     /**

@@ -10,7 +10,7 @@
  	protected $variables = array();
  	protected $_controller;
  	protected $_action;
-    protected $trans;
+  protected $trans;
 
      /**
       * Class constructor
@@ -61,7 +61,9 @@
       * @return void
       */
      function translater($key) {
-        $this->trans->echoText($key);
+        echo "<pre>";
+        $this->trans->loadLangArray($key);
+        //$this->trans->echoText($key);
     }
 
      /**

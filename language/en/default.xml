@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Default language xml for english
+
+To define a language tag use
+<loctext id="YOUR_KEY">MY TEXT</loctext>
 -->
 <language id="EN">
     <loctext id="MENU_HEADING">
