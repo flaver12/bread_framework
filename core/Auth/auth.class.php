@@ -19,63 +19,57 @@ class Auth {
 		else {return true;}
 	}
 
-	/*
-	 * Because of errors its in the comments now
-	 * 
-	 */
 	public function autolog($hash) {
 		// Someone smart have to work here
-		
-		
 		$row = new DBRow();
-    $row->setRow('bUser');
-	//die Usernamerainbowtabelrow  muss noch hinzugefügt werden
-    $row->set($User, 'username');
-	    $row->set($hash, 'usernamerainbowtabel');
+	    $row->setRow('bUser');
+		//die Usernamerainbowtabelrow  muss noch hinzugefügt werden
+	    $row->set($User, 'username');
+		$row->set($hash, 'usernamerainbowtabel');
 
-    $result = $row->findByKey();
-	if (empty($result))
-	{
-	return false;
+	    $result = $row->findByKey();
+		if (empty($result))
+		{
+		return false;
+		}
+		else {
+		/**is now fixed**/
+		$_SESSION['loggedIn'] = true;
+			
+			return $result;
+		}
 	}
-	else {
-	/**is now fixed**/
-	$_SESSION['loggedIn'] = true;
-		
-		return $result;
-	}}
 	
 	public function Login($User,$Password)
 	{
-
-
-if(isset($_COOKIE['autologger']))
-	{
-	$hash = $_COOKIE['autologger']; 
-	$userhash = $this->Auth->autolog($hash);}
-	if($userhash != false){
-	$q = "INSERT INTO User (Usernamerainbowtabel) VALUES ('$userhash') WHERE username ='$User';";
-	$this->$DB->sendquery();
+		if(isset($_COOKIE['autologger']))
+		{
+			$hash = $_COOKIE['autologger']; 
+			$userhash = $this->Auth->autolog($hash);
+		}
+		if($userhash != false){
+			$q = "INSERT INTO bUser (Usernamerainbowtabel) VALUES ('$userhash') WHERE username ='$User';";
+			$this->$DB->sendquery();
+		}
+		else {
+		    //Make a md5 hash of the pw
+		    $Password = md5($Password);
+		    $row = new DBRow();
+		    $row->setRow('bUser');
+		    $row->set($User, 'username');
+		    $row->set($Password, 'pw');
+			$result = $row->findByKey();
+			if (empty($result))
+			{
+				return Null;
+			}
+			else {
+				/**is now fixed**/
+				$Month = 2592000 + time(); 
+	  			setcookie(autologger,($cookiestring = md5($User)), $Month);
+				$_SESSION['loggedIn'] = true;
+				return $result;
+			}
+		}
 	}
-	else {
-	
- 
-    //Make a md5 hash of the pw
-    $Password = md5($Password);
-    $row = new DBRow();
-    $row->setRow('bUser');
-    $row->set($User, 'username');
-    $row->set($Password, 'pw');
-    $result = $row->findByKey();
-	if (empty($result))
-	{
-	return Null;
-	}
-	else {
-	/**is now fixed**/
-	$Month = 2592000 + time(); 
-	  setcookie(autologger,($cookiestring = md5($User)), $Month);
-	$_SESSION['loggedIn'] = true;
-	return $result;}
-	}}
 }
