@@ -73,7 +73,7 @@ function callHook() {
 /**
  * A amazing function !!!!<3
  *
- * @returns void
+ * @return void
  */
 function session() {
 	session_start();
@@ -111,6 +111,8 @@ function __autoload($className) {
     	require_once(ROOT . '/core/HTML/' . strtolower($className) . '.class.php');
     } elseif (file_exists(ROOT . '/core/Formulator/' . strtolower($className) . '.class.php')) {
     	require_once(ROOT . '/core/Formulator/' . strtolower($className) . '.class.php');
+    } elseif (file_exists(ROOT . '/core/Formulator/Fields/' . strtolower($className) . '.class.php')) {
+    	require_once(ROOT . '/core/Formulator/Fields/' . strtolower($className) . '.class.php'); 
     } else {
        throw new Exception("$className condt bee load, do you create it?");
     }
