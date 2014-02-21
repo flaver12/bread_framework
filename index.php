@@ -6,9 +6,6 @@
  * This is the Indexfile,
  * do only changes here when you know what you are doing!
  */
- 
-
-
 define('ROOT', dirname(__FILE__));
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;
 
