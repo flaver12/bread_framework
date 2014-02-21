@@ -8,12 +8,15 @@
 
 class DBQuery extends DBCore {
 
-	/**
-	 * Send a query to the database
-	 * @param  String $q 
-	 * @return Array or NULL
-	 */
-	public function sendQuery($q = NULL, $noResult=false) {
+    /**
+     * Send a query to the db
+     *
+     * @param null $q
+     * @param bool $noResult
+     * @return array|bool|null
+     * @throws Exception
+     */
+    public function sendQuery($q = NULL, $noResult=false) {
 		if (!isset($q)) {
 			throw new Exception("Empty query string");
 		}
@@ -33,12 +36,14 @@ class DBQuery extends DBCore {
 		}
 	}
 
-	/**
-	 * Send the number of Rows back
-	 * @param  String $tabel
-	 * @return Int
-	 */
-	public function getNumberOfRows($tabel = NULL) {
+    /**
+     * Count the number of rows
+     *
+     * @param null $tabel
+     * @return int|null
+     * @throws Exception
+     */
+    public function getNumberOfRows($tabel = NULL) {
 		if (!isset($tabel)) {
 			throw new Exception("getNumberOfRows needs a Tabel");
 		}

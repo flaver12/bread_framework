@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Default language xml for german
+
+To define a language tag use
+<loctext id="YOUR_KEY">Mein Text</loctext>
+-->
+<language id="DE">
+    <loctext id="MENU_HEADING">
+        <text>Navigation</text>
+    </loctext>
+    <loctext id="MENU_SETTINGS_TEXT">
+        <text>Einstellungen</text>
+    </loctext>
+</language>

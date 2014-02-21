@@ -6,23 +6,37 @@
  * Init
  **/
 
+/**
+ * Set the error reporting
+ *
+ * @return void
+ */
 function ErrorReporting() {
 	if ('DEV' == TRUE) {
 		error_reporting(E_ALL);
-		ini_set('display_errors', 'On');
+		ini_set('display_errors', 1);
+        ini_set('log_errors', 1);
+        ini_set('error_log', ROOT.'/logs/error.log');
 	} else {
 		error_reporting(E_ALL);
 		ini_set('display_errors', 'Off');
+        ini_set('log_errors', 1);
 		ini_set('error_log', ROOT.'/logs/error.log');
 	}
 }
 
+/**
+ * This is the nice little hacked callHook function
+ *
+ * @throws Exception
+ * @return void
+ */
 function callHook() {
 	global $url;
     if(LESS == true) {
         new Lesscompiler();
     }
-	new Logger();
+    //new Logger();
 	$url = explode('/', $url);
 	if (empty($url[0])) {
 		$controller = "indexs";
@@ -56,10 +70,22 @@ function callHook() {
 	}
 }
 
+/**
+ * A amazing function !!!!<3
+ *
+ * @returns void
+ */
 function session() {
 	session_start();
 }
 
+/**
+ * Class __autoloader but thx php is outdated
+ *
+ * @param $className
+ * @throws Exception
+ * @return void
+ */
 function __autoload($className) {
     if (file_exists(ROOT . '/core/Auth/' . strtolower($className) . '.class.php')) {
         require_once(ROOT . '/core/Auth/' . strtolower($className) . '.class.php');
@@ -88,6 +114,7 @@ function __autoload($className) {
     } else {
        throw new Exception("$className condt bee load, do you create it?");
     }
+    //var_dump($className);
 }
 session();
 ErrorReporting();

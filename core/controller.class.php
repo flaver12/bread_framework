@@ -13,6 +13,13 @@ class Controller {
     protected $breadcache;
     protected $auth;
 
+    /**
+     * Class constructor
+     *
+     * @param $controller
+     * @param $action
+     * @return mixed
+     */
     function __construct( $controller, $action) {
     	$this->_controller = $controller;
     	$this->_action = $action;
@@ -20,13 +27,26 @@ class Controller {
         //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
         $this->breadcache = new Cache();
-        //$this->auth = new Auth();
+        $this->auth = new Auth();
     }
 
+    /**
+     * Set a variable in the Template class
+     *
+     * @param $name
+     * @param $value
+     * @return void
+     */
     protected function set($name, $value) {
     	$this->_template->set($name, $value);
     }
 
+    /**
+     * Destructor of the class calls the render function form
+     * the template class
+     *
+     * @return void
+     */
     function __destruct() {
     	$this->_template->render();
     }

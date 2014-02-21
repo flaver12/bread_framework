@@ -6,32 +6,35 @@
  * Caching class
  **/
 class Cache {
-	/**
-	 * Get a file from cache
-	 * @param  String $file
-	 * @return File
-	 */
-	public function get($file) {
-		$file = ROOT .'/tmp/cache/' . $file;
+    /**
+     * Get a file form cache
+     *
+     * @param $file
+     * @return mixed
+     * @throws Exception
+     */
+    public function get($file) {
+		$file = ROOT .'/tmp/cache/' . $file.'.json';
 		if (file_exists($file)) {
-			$handel = fopen($file, 'rb');
-			$value = fread($handel, filesize($file));
-			fclose($handel);
-			return unserialize($value);
+            $jsonData = file_get_contents($file);
+            $jsonArray = json_decode($jsonData, true);
+            return $jsonArray;
 		} else {
-			throw new Exception("$file count not be load");
+			throw new Exception("$file could not be load");
 		}
 	}
 
 	/**
 	 * Save values in the cache
+     *
 	 * @param String $file
-	 * @param Multi $variable
+	 * @param Array $variable
+     * @return void
 	 */
-	public function set($file,$variable) {
-		$file = ROOT. '/tmp/cache/' . $file;
-		$handle = fopen($file, 'a');
-		fwrite($handle, serialize($variable));
+	public function set($file,$variable = array()) {
+		$file = ROOT. '/tmp/cache/' . $file . '.json';
+		$handle = fopen($file, 'w');
+		fwrite($handle, json_encode($variable));
 		fclose($handle);
 	}
 }
