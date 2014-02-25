@@ -72,6 +72,11 @@
       * @return void
       */
      function render() {
+      //Ugly hack for ajax
+      if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        die();
+      } 
+
 		extract($this->variables);
 	 
 	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.phtml')) {

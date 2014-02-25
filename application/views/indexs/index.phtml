@@ -1,6 +1,9 @@
 <h1>Startpage</h1>
 <p>this is the startpage</p>
+<textarea id="backendEditor"></textarea>
+<input type="submit" id="editor">
 <?php 
-	$form = new Formulator('register');
-	$form->registerForm(); 
-?>
+foreach($comments as $comment) {
+	echo $comment['comment'];
+	echo "<hr />";
+}
