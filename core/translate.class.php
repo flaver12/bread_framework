@@ -1,8 +1,24 @@
 <?php
 /**
- * @author Flavio Kleiber <flavio@swagpeople.ch>
- * @copyright Flavio Kleiber, swagpeople.ch (c) 2014
- *
+ * @author Flavio Kleiber, Aurel Syz, <flavio@swagpeople.ch, <aurel@swagpeople.ch>>
+ * @copyright Flavio Kleiber, Aurel Syz, swagpeople.ch (c) 2014
+ * <p> duusgdusgudgu <t>Test_Menu</t></p>
+ * ajax.find(t)
+ * 
+ * table
+ * id 1
+ * transKey MENU
+ * EN Navigation
+ * DE Menü
+ * 
+ * 
+ * 
+ * $resultArr[]
+ * 
+ * 
+ * $result = json_encode($resultArr);
+ * return $result
+ * 
  * Translate class
  **/
 class Translate {
@@ -38,7 +54,27 @@ class Translate {
             }
         }
     }
+    
+    /**
+     * 
+     * Get translate values from db
+     * 
+     * @param int $pageid
+     * @return json $result
+     */
+    public function DbTranslate ($pageid)        
+    {
+       $translateId = $this->loadLanuageId();
+       $query = new DBQuery();
+       $q = "SELECT $translateId FROM b_translate WHERE pageID = $pageid ";
+       $result = $query->sendQuery($q);
+       $result = json_encode($result);
+       return $result;
+    }
 
+        
+    
+    
     /**
      * Echo a text
      *
