@@ -5,5 +5,5 @@ class TranslatesController extends Controller {
         {     
             $result = Translate::DbTranslate($_POST);
             echo $result;
-	}
+	    }
 }

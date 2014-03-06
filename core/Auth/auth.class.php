@@ -66,7 +66,7 @@ class Auth {
 			else {
 				/**is now fixed**/
 				$Month = 2592000 + time(); 
-	  			setcookie(autologger,($cookiestring = md5($User)), $Month);
+	  			setcookie('autologger',($cookiestring = md5($User)), $Month);
 				$_SESSION['loggedIn'] = true;
 				return $result;
 			}

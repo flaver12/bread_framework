@@ -9,5 +9,8 @@ class IndexsController extends Controller {
 		$q = "SELECT * FROM b_comment";
 		$result = $query->sendQuery($q);
 		$this->set('comments', $result);
+
+
 	}
+	 
 }

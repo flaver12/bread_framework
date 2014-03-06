@@ -3,38 +3,78 @@
  * @author Flavio Kleiber <flavio@swagpeople.ch>
  * @copyright Flavio Kleiber, swagpeople.ch (c) 2014
  *
- * Caching class
+ * The cache class
  **/
 class Cache {
     /**
-     * Get a file form cache
+     * phpFastCache object
      *
-     * @param $file
-     * @return mixed
-     * @throws Exception
+     * @access protected
+     * @var phpFastCache
      */
-    public function get($file) {
-		$file = ROOT .'/tmp/cache/' . $file.'.json';
-		if (file_exists($file)) {
-            $jsonData = file_get_contents($file);
-            $jsonArray = json_decode($jsonData, true);
-            return $jsonArray;
-		} else {
-			throw new Exception("$file could not be load");
-		}
-	}
+    protected $cache;
 
-	/**
-	 * Save values in the cache
+    /**
+     * Constant for the cache time
+     */
+    const CACHE_TIME = 300;
+
+    /**
+     * Class constructor
      *
-	 * @param String $file
-	 * @param Array $variable
+     * @return mixed
+     */
+    function __construct() {
+        include (ROOT."/core/Library/cache/phpfastcache.php");
+        $this->cache = new phpFastCache();
+    }
+
+    /**
+     * Save a value in the cache
+     *
+     * @param $key
+     * @param $data
      * @return void
-	 */
-	public function set($file,$variable = array()) {
-		$file = ROOT. '/tmp/cache/' . $file . '.json';
-		$handle = fopen($file, 'w');
-		fwrite($handle, json_encode($variable));
-		fclose($handle);
-	}
+     */
+    public function write($key, $data) {
+        $cacheTime = self::CACHE_TIME;
+        $this->cache->set($key, $data, $cacheTime);
+    }
+
+    /**
+     * Get a value form the cache
+     *
+     * @param $key
+     * @return null|object
+     */
+    public function get($key) {
+        $value = $this->cache->get($key);
+        return $value;
+    }
+
+    /**
+     * Is the object in the key?
+     *
+     * @param $key
+     * @return bool
+     */
+    public function exist($key) {
+        $value = $this->cache->isExisting($key);
+        return $value;
+    }
+
+    /**
+     * Delete a value from cache
+     *
+     * @param $key
+     * @return void
+     */
+    public function delete($key) {
+        try {
+            $this->cache->delete($key);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }

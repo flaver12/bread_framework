@@ -118,7 +118,7 @@ class DBRow extends DBCore {
             $q = "SELECT * FROM ".$this->_row ." WHERE " .implode(" AND ", $q_tmp);
         } else {
             //TODO:Change here query
-            $q = 'SELECT * FROM '.$this->_row .' WHERE ' .$key[0][0] .' = '. "$value[$key[0][0]]";
+            //$q = 'SELECT * FROM '.$this->_row .' WHERE ' .$key[0][0] .' = '. "$value[$key[0][0]]";
         }
         //Clean the array
         unset($this->_values);

@@ -2,22 +2,6 @@
 /**
  * @author Flavio Kleiber, Aurel Syz, <flavio@swagpeople.ch, <aurel@swagpeople.ch>>
  * @copyright Flavio Kleiber, Aurel Syz, swagpeople.ch (c) 2014
- * <p> duusgdusgudgu <t>Test_Menu</t></p>
- * ajax.find(t)
- * 
- * table
- * id 1
- * transKey MENU
- * EN Navigation
- * DE Menü
- * 
- * 
- * 
- * $resultArr[]
- * 
- * 
- * $result = json_encode($resultArr);
- * return $result
  * 
  * Translate class
  **/
