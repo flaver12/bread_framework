@@ -15,7 +15,8 @@ class DBCore {
      * @return mixed
      */
     function __construct() {
-		$this->connect(DB_HOST, DB_USER, DB_PW, DB_DB);
+        $dbConf = ConfigReader::read('database');
+		$this->connect($dbConf['host'], $dbConf['username'], $dbConf['password'], $dbConf['database']);
 	}
 
     /**

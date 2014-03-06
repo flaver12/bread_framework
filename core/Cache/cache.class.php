@@ -17,7 +17,7 @@ class Cache {
     /**
      * Constant for the cache time
      */
-    const CACHE_TIME = 300;
+    const CACHE_TIME = 600;
 
     /**
      * Class constructor
