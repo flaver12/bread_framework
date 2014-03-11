@@ -115,6 +115,8 @@ function __autoload($className) {
     	require_once(ROOT . '/core/Formulator/Fields/' . strtolower($className) . '.class.php'); 
     } elseif (file_exists(ROOT . '/core/Alc/' . strtolower($className) . '.class.php')) {
     	require_once(ROOT . '/core/Alc/' . strtolower($className) . '.class.php');
+    } elseif (file_exists(ROOT . '/application/helpers/' . strtolower($className) . '.php')) {
+    	require_once(ROOT . '/application/helpers/' . strtolower($className) . '.php');
     } else {
        throw new Exception("$className condt bee load, do you create it?");
     }

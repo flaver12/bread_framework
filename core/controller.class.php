@@ -23,7 +23,7 @@ class Controller {
     function __construct( $controller, $action) {
     	$this->_controller = $controller;
     	$this->_action = $action;
-        
+
         //Make the new IMPORTANT CLASSES  for the controller
     	$this->_template = new Template($controller, $action);
         $this->breadcache = new Cache();
