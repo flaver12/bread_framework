@@ -32,4 +32,9 @@ class App {
 			return NULL;
 		}
 	}
+
+	public static function includeTemplate($template) {
+		$temp = @readfile(ROOT.'/application/views/templates/'.$template.'_template.phtml');
+		return $temp;
+	}
 }
