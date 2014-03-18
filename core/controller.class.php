@@ -42,6 +42,20 @@ class Controller {
     }
 
     /**
+     * Checks is the request a post request
+     *
+     * @return Boolean
+     * 
+     */
+    protected function isPost() {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Destructor of the class calls the render function form
      * the template class
      *

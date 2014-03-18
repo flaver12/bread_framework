@@ -21,12 +21,4 @@ class Request {
     public static function getLang() {
        return strtoupper(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
     }
-
-    public static function isPost() {
-    	if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    		return true;
-    	} else {
-    		return false;
-    	}
-    }
 }

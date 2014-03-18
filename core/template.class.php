@@ -11,20 +11,22 @@
  	protected $_controller;
  	protected $_action;
   protected $trans;
+  protected $hasViews;
 
-     /**
-      * Class constructor
-      *
-      * @param $controller
-      * @param $action
-      * @return mixed
-      */
-     function __construct($controller, $action) {
- 		$this->_controller = $controller;
- 		$this->_action = $action;
-        $this->trans = new Translate();
-        $this->translateLoader();
-    }
+   /**
+    * Class constructor
+    *
+    * @param $controller
+    * @param $action
+    * @return mixed
+    */
+   function __construct($controller, $action) {
+  	$this->_controller = $controller;
+  	$this->_action = $action;
+    $this->trans = new Translate();
+    $this->translateLoader();
+    $this->hasViews = App::hasViews('test', 'test', true);
+  }
 
      /**
       * Set a variable to the view
@@ -37,60 +39,64 @@
  		$this->variables[$name] = $value;
  	}
 
-     /**
-      * Load the translation xml
-      *
-      * @return void
-      */
-     function translateLoader() {
-        $lang = Request::getLang();
-        strtolower($lang);
-        if(file_exists(ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml')) {
-            $file = ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml';
-            $this->trans->loadTranslationFile($file);
-        } else {
-            $file = ROOT.'/language/'.$lang.'/default.xml';
-            $this->trans->loadTranslationFile($file);
-        }
+ /**
+  * Load the translation xml
+  *
+  * @return void
+  */
+ function translateLoader() {
+    $lang = Request::getLang();
+    strtolower($lang);
+    if(file_exists(ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml')) {
+        $file = ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml';
+        $this->trans->loadTranslationFile($file);
+    } else {
+        $file = ROOT.'/language/'.$lang.'/default.xml';
+        $this->trans->loadTranslationFile($file);
     }
+}
 
-     /**
-      * Translate a text
-      *
-      * @param $key
-      * @return void
-      */
-     function translater($key) {
-        echo "<pre>";
-        $this->trans->loadLangArray($key);
-        //$this->trans->echoText($key);
-    }
+ /**
+  * Translate a text
+  *
+  * @param $key
+  * @return void
+  */
+ function translater($key) {
+    echo "<pre>";
+    $this->trans->loadLangArray($key);
+    //$this->trans->echoText($key);
+}
 
-     /**
-      * Renders the view
-      *
-      * @return void
-      */
-     function render() {
+ /**
+  * Renders the view
+  *
+  * @return void
+  */
+ function render() {
       //Ugly hack for ajax
       if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         die();
       } 
 
-		extract($this->variables);
-	 
-	    if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.phtml')) {
-	        include (ROOT . '/application/views/' .$this->_controller .'/header.phtml');
-	    } else {
-	        include (ROOT .'/application/views/header.phtml');
-	    }
+    extract($this->variables);
 
-		include (ROOT . '/application/views/' . $this->_controller . '/' . $this->_action . '.phtml');      
-	     
-	    if (file_exists(ROOT . '/application/views/'. $this->_controller .'/footer.phtml')) {
-	        include (ROOT . '/application/views/'. $this->_controller . '/footer.phtml');
-	    } else {
-	        include (ROOT . '/application/views/footer.phtml');
-	    }
- 	}
- }
+      if (file_exists(ROOT .'/application/views/' . $this->_controller . '/header.phtml')) {
+          include (ROOT . '/application/views/' .$this->_controller .'/header.phtml');
+      } else {
+          include (ROOT .'/application/views/header.phtml');
+      }
+      if(!isset($this->hasViews) || empty($this->hasViews)) {
+        include (ROOT . '/application/views/' . $this->_controller . '/' . $this->_action . '.phtml');
+      } else {
+        include (ROOT . '/application/views/' . $this->hasViews[0] . '/' . $this->hasViews[1] . '.phtml');
+      }
+            
+       
+      if (file_exists(ROOT . '/application/views/'. $this->_controller .'/footer.phtml')) {
+          include (ROOT . '/application/views/'. $this->_controller . '/footer.phtml');
+      } else {
+          include (ROOT . '/application/views/footer.phtml');
+      }
+  }
+}

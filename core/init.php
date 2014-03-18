@@ -40,34 +40,41 @@ function callHook() {
     }
     //new Logger();
 	$url = explode('/', $url);
-	if (empty($url[0])) {
-		$controller = "indexs";
-		$action = "index";
-		/**UGLY HACK**/
-		$test1 = array('handi' => 'hansi');
-		$queryString[] = $test1;
-	} else {
-		$controller = $url[0];
-		$action = $url[1];
-		if (empty($action)) {
-			$action = "index";
-		}
-		if(empty($url[2])) {
-            $emptyArr = array();
-			$queryString[] = $emptyArr;
-		} else {
-			$queryString[] = $url[2];
-		}
-	}
+    $routes = App::checkRouts($url[0]);
+    if (!empty($routes)) {
+        $controller = $routes[0];
+        $action = $routes[1];
+        $emptyArr = array();
+        $queryString[] = $emptyArr;
+    } else {
+        if (empty($url[0])) {
+            $controller = "indexs";
+            $action = "index";
+            /**UGLY HACK**/
+            $test1 = array('handi' => 'hansi');
+            $queryString[] = $test1;
+        } else {
+            $controller = $url[0];
+            $action = $url[1];
+            if (empty($action)) {
+                $action = "index";
+            }
+            if(empty($url[2])) {
+                $emptyArr = array();
+                $queryString[] = $emptyArr;
+            } else {
+                $queryString[] = $url[2];
+            }
+        }
+    }
 	$controllerName = $controller;
 	$controller = ucwords($controller);
 	$controller .= 'Controller';
-    print_r($queryString);
 	$dispatch = new $controller($controllerName, $action);
 	if((int)method_exists($controller, $action)) {
 		call_user_func_array(array($dispatch, $action), $queryString);
 	} else {
-		throw new Exception("Class $controller coundt bee load");
+		return false;
 	}
 }
 

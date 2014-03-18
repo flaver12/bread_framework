@@ -5,11 +5,11 @@
  *
  * Image class
  **/
+//App::hasViews('indexs', 'index');
 class ImagesController extends Controller {
-
 	public function index($fileName = NULL){
-		$filenummber = exif_imagetype($fileName);
-		$fileType = $this->getImageType($filenummber);
+		/*$filenummber = exif_imagetype($fileName);
+		$fileType = $this->getImageType($filenummber);*/
 		echo $fileType;
 		die;
 	}
