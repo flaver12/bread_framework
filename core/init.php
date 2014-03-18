@@ -33,6 +33,8 @@ function ErrorReporting() {
  */
 function callHook() {
 	global $url;
+    $queryString = array();
+    ob_start();
     if(LESS == true) {
         new Lesscompiler();
     }
@@ -43,7 +45,7 @@ function callHook() {
 		$action = "index";
 		/**UGLY HACK**/
 		$test1 = array('handi' => 'hansi');
-		$queryString = $test1;
+		$queryString[] = $test1;
 	} else {
 		$controller = $url[0];
 		$action = $url[1];
@@ -51,17 +53,16 @@ function callHook() {
 			$action = "index";
 		}
 		if(empty($url[2])) {
-			/**UGLY HACK**/
-			$test1 = array('handi' => 'hansi');
-			$queryString = $test1;
+            $emptyArr = array();
+			$queryString[] = $emptyArr;
 		} else {
-			$queryString = $url[2];
+			$queryString[] = $url[2];
 		}
 	}
 	$controllerName = $controller;
 	$controller = ucwords($controller);
 	$controller .= 'Controller';
-
+    print_r($queryString);
 	$dispatch = new $controller($controllerName, $action);
 	if((int)method_exists($controller, $action)) {
 		call_user_func_array(array($dispatch, $action), $queryString);
