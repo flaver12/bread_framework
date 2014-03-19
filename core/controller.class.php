@@ -41,6 +41,10 @@ class Controller {
     	$this->_template->set($name, $value);
     }
 
+    protected function hasNoView($value = true) {
+        $this->_template->hasNoViews($value);
+    }
+
     /**
      * Checks is the request a post request
      *

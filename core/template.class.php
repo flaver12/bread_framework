@@ -10,8 +10,9 @@
  	protected $variables = array();
  	protected $_controller;
  	protected $_action;
-  protected $trans;
-  protected $hasViews;
+    protected $trans;
+    protected $hasViews;
+    protected $hasNoView;
 
    /**
     * Class constructor
@@ -26,6 +27,7 @@
     $this->trans = new Translate();
     $this->translateLoader();
     $this->hasViews = App::hasViews('test', 'test', true);
+    $this->hasNoView = false;
   }
 
      /**
@@ -39,6 +41,9 @@
  		$this->variables[$name] = $value;
  	}
 
+    function hasNoViews($value = true) {
+        $this->hasNoView = $value;
+    }
  /**
   * Load the translation xml
   *
@@ -75,7 +80,8 @@
   */
  function render() {
       //Ugly hack for ajax
-      if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+       echo $this->hasNoView;
+      if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' || $this->hasNoView == true) {
         die();
       } 
 

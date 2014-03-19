@@ -5,27 +5,28 @@
  *
  * Image class
  **/
-//App::hasViews('indexs', 'index');
 class ImagesController extends Controller {
-	public function index($fileName = NULL){
-		/*$filenummber = exif_imagetype($fileName);
-		$fileType = $this->getImageType($filenummber);*/
-		echo $fileType;
-		die;
-	}
+	public function index(){} //Normal index
 
-	private function getImageType($filenummber) {
-		switch ($filenummber) {
-			case 2:
-				$file = 'JPEG';
-				break;
-			case 3:
-				$file = 'PNG';
-				break;
-			default:
-				$file = NULL;
-				break;
-			return $file;
-		}
-	}
+    public function upload() {
+        $this->hasNoView();
+        //print_r($_FILES);
+        $mineType = $this->getMimeType($_FILES['file']['tmp_name']);
+        switch($mineType) {
+            case 'image/jpeg':
+                $mineType = "jpeg";
+            break;
+            default:
+                echo "nix gut!";
+        }
+        $image = imagecreatefromjpeg($_FILES['file']['name']);
+        imagejpeg($image, ROOT.'weebroot/uplods/images/'.$_FILES['file']['name']);
+    }
+
+    private function getMimeType($tmp) {
+        $imgData = getimagesize($tmp);
+        $mimeType = image_type_to_mime_type($imgData[2]);
+        //$extension = image_type_to_extension($imgData[2]);
+        return $mimeType;
+    }
 }

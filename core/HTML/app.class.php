@@ -8,9 +8,12 @@
 class App {
 	protected static $views = array();
 
+    protected static $view = false;
+
 	protected static $routes = array(
 		'community' => array('indexs', 'index'),
-		'login'		=> array('communitys', 'login')
+		'login'		=> array('communitys', 'login'),
+        'upload'	=> array('images', 'index')
 		);
 
 	public static function hasViews($controller, $action, $view=false) {
@@ -34,7 +37,11 @@ class App {
 	}
 
 	public static function includeTemplate($template) {
-		$temp = @readfile(ROOT.'/application/views/templates/'.$template.'_template.phtml');
-		return $temp;
+		$temp = ROOT.'/application/views/templates/'.$template.'_template.phtml';
+        if(file_exists($temp)) {
+            include $temp;
+        } else {
+            return false;
+        }
 	}
 }
