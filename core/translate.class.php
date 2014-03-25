@@ -56,9 +56,6 @@ class Translate {
        return $result;
     }
 
-        
-    
-    
     /**
      * Echo a text
      *
@@ -110,7 +107,6 @@ class Translate {
             $tempArray[] = $this->_xml->xpath($path);
             foreach ( (array) $tempArray as $index => $node ) {
                 $out[$index] = ( is_object ( $node ) ) ? xml2array ( $node ) : $node;
-                
             }
             print_r($out[0][0]);
         } else {

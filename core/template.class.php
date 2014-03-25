@@ -52,13 +52,12 @@
  function translateLoader() {
     $lang = Request::getLang();
     strtolower($lang);
-    if(file_exists(ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml')) {
+    /*if(file_exists(ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml')) {
         $file = ROOT.'/language/'. $lang .'/'.$this->_controller.'.xml';
         $this->trans->loadTranslationFile($file);
-    } else {
-        $file = ROOT.'/language/'.$lang.'/default.xml';
-        $this->trans->loadTranslationFile($file);
-    }
+    } else {*/
+    $file = ROOT.'/language/'.$lang.'/default.xml';
+    $this->trans->loadTranslationFile($file);
 }
 
  /**
@@ -68,9 +67,8 @@
   * @return void
   */
  function translater($key) {
-    echo "<pre>";
-    $this->trans->loadLangArray($key);
-    //$this->trans->echoText($key);
+    //$this->trans->loadLangArray($key);
+    $this->trans->echoText($key);
 }
 
  /**
